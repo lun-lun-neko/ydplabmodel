@@ -5,7 +5,7 @@ from sklearn.decomposition import PCA
 from sklearn.cluster import KMeans
 from sklearn.pipeline import Pipeline
 from sklearn.impute import SimpleImputer
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from fastapi import APIRouter,Depends
 from pathlib import Path
 
@@ -27,9 +27,17 @@ class KmIn(BaseModel):
     leisureActivity4: int
     leisureActivity5: int
 
-class KmOut(BaseModel):
-    vector: list[float]
-    cluster: int
+# class KmOut(BaseModel):
+#     animalName: str
+#     animalType: str
+#     description: str
+#     animalDescription: str
+#     clusterDescription: str
+#     interesting: list[str]
+#     # 디버그/확인용
+#     cluster: int = Field(..., description="예측된 군집")
+#     leisurePurpose_plus1: int = Field(..., description="leisurePurpose + 1 결과")
+#     X_first_row: list[float] = Field(..., description="모델에 들어간 1행 벡터")
 
 FEATURES = [
     "household_income",
@@ -68,22 +76,24 @@ pipe = Pipeline([
 ])
 pipe.fit(X_train)
 
-@router.post("/kmeans", response_model = KmOut)
-def predict(body:KmIn):
-    x = np.array([[body.householdIncome, body.leisurePurpose, body.leisurePurpose2,
-                   body.weekdayAvgLeisureTime, body.weekendAvgLeisureTime, body.restRecreationRate,
-                   body.hobbyRate, body.selfImprovementRate, body.socialRelationshipRate,
-                   body.leisureActivity1, body.leisureActivity2, body.leisureActivity3,
-                   body.leisureActivity4, body.leisureActivity5]],
-                 dtype=int)
-    cluster = int(pipe.predict(x)[0])
-    return KmOut(vector=x.flatten().tolist(), cluster=cluster)
+# @router.post("/kmeans", response_model = KmOut)
+# def predict(body:KmIn):
+#     x = np.array([[body.householdIncome, body.leisurePurpose, body.leisurePurpose2,
+#                    body.weekdayAvgLeisureTime, body.weekendAvgLeisureTime, body.restRecreationRate,
+#                    body.hobbyRate, body.selfImprovementRate, body.socialRelationshipRate,
+#                    body.leisureActivity1, body.leisureActivity2, body.leisureActivity3,
+#                    body.leisureActivity4, body.leisureActivity5]],
+#                  dtype=int)
+#     cluster = int(pipe.predict(x)[0])
+#     return KmOut(vector=x.flatten().tolist(), cluster=cluster)
 
 class TestOut(BaseModel):
     animalName: str
     animalType: str
     description: str
     animalDescription: str
+    clusterDescription : str
+    interesting : list[str]
 
 
 def result_classify(cluster):
@@ -103,7 +113,8 @@ def result_classify(cluster):
             "description": "당신은 파워가 뛰어납니다.",
             "animalDescription": "상인이는 파워가 높은 동물입니다",
             "clusterDescription": "당신의 유형은 다른 유형보다 스포츠/운동을 좋아합니다.",
-            "interesting": ["파워", "붉은색", "오션브릿지"]
+            "interesting": ["파워", "붉은색", "오션브릿지"],
+            # "test" : x[1]
         }
     elif cluster == 2:
         resultvalue = {
@@ -163,7 +174,8 @@ def result_classify(cluster):
 
 @router.post("/questions")
 async def clusteranalyze(body: KmIn):
-    x = np.array([[body.householdIncome, body.leisurePurpose, body.leisurePurpose2,
+    lp1 = body.leisurePurpose+1
+    x = np.array([[body.householdIncome, lp1, body.leisurePurpose2,
                    body.weekdayAvgLeisureTime, body.weekendAvgLeisureTime, body.restRecreationRate,
                    body.hobbyRate, body.selfImprovementRate, body.socialRelationshipRate,
                    body.leisureActivity1, body.leisureActivity2, body.leisureActivity3,
@@ -172,3 +184,4 @@ async def clusteranalyze(body: KmIn):
     cluster = int(pipe.predict(x)[0]) #모델 실행 후 클러스터 값 저장
     analyze = result_classify(cluster)
     return analyze
+
