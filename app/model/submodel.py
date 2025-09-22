@@ -172,10 +172,9 @@ def result_classify(cluster):
         }
     return resultvalue
 
-@router.post("/questions")
+@router.post("/v1/questions")
 async def clusteranalyze(body: KmIn):
-    lp1 = body.leisurePurpose+1
-    x = np.array([[body.householdIncome, lp1, body.leisurePurpose2,
+    x = np.array([[body.householdIncome, body.leisurePurpose, body.leisurePurpose2,
                    body.weekdayAvgLeisureTime, body.weekendAvgLeisureTime, body.restRecreationRate,
                    body.hobbyRate, body.selfImprovementRate, body.socialRelationshipRate,
                    body.leisureActivity1, body.leisureActivity2, body.leisureActivity3,
@@ -184,4 +183,3 @@ async def clusteranalyze(body: KmIn):
     cluster = int(pipe.predict(x)[0]) #모델 실행 후 클러스터 값 저장
     analyze = result_classify(cluster)
     return analyze
-
