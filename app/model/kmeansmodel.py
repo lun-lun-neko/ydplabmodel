@@ -101,74 +101,74 @@ def result_classify(cluster):
         resultvalue = {
             "animalName" : "당신의 동물은 재욱이입니다.",
             "animalType" : "수영구 붉은 수달",
-            "description" : "당신은 빠르고 관찰력이 뛰어납니다.",
-            "animalDescription" : "재욱이는 지능이 높은 동물입니다",
-            "clusterDescription" : "당신의 유형은 다른 유형보다 스포츠/운동을 좋아합니다.",
-            "interesting" : ["스피드", "붉은색", "BH하우스"]
+            "description": "당신은 빠르고 관찰력이 뛰어납니다.",
+            "animalDescription": "재욱이는 지능이 높은 동물입니다",
+            "clusterDescription": "당신의 유형은 다른 유형보다 스포츠/운동을 좋아합니다.",
+            "interesting": ["스피드", "붉은색", "BH하우스"],
+            "animalImageUrl": "https://lunlunneko-ydplab.hf.space/static/animals/jju.svg"
         }
     elif cluster == 1:
         resultvalue = {
             "animalName": "당신의 동물은 상인이입니다.",
-            "animalType": "범일동 붉은 매",
             "description": "당신은 파워가 뛰어납니다.",
             "animalDescription": "상인이는 파워가 높은 동물입니다",
             "clusterDescription": "당신의 유형은 다른 유형보다 스포츠/운동을 좋아합니다.",
             "interesting": ["파워", "붉은색", "오션브릿지"],
-            # "test" : x[1]
+            "animalImageUrl": "https://lunlunneko-ydplab.hf.space/static/animals/jsi.svg"
         }
     elif cluster == 2:
         resultvalue = {
             "animalName": "당신의 동물은 지민이입니다.",
-            "animalType": "아라관 푸른 수달",
             "description": "당신은 귀엽습니다.",
             "animalDescription": "지민이는 귀여운 동물입니다",
             "clusterDescription": "당신의 유형은 다른 유형보다 자기계발을 좋아합니다.",
-            "interesting": ["cute", "푸른색", "아라관"]
+            "interesting": ["cute", "푸른색", "아라관"],
+            "animalImageUrl": "https://lunlunneko-ydplab.hf.space/static/animals/pjm.svg"
         }
     elif cluster == 3:
         resultvalue = {
             "animalName": "당신의 동물은 예성이입니다.",
-            "animalType": "영주동 흑곰",
             "description": "당신은 거대합니다.",
             "animalDescription": "예성이는 거대한 동물입니다",
             "clusterDescription": "당신의 유형은 다른 유형보다 사교/가족을 좋아합니다.",
-            "interesting": ["덩치", "검은색", "코모도"]
+            "interesting": ["덩치", "검은색", "코모도"],
+            "animalImageUrl": "https://lunlunneko-ydplab.hf.space/static/animals/jys.svg"
         }
     elif cluster == 4:
         resultvalue = {
             "animalName": "당신의 동물은 민경이입니다.",
-            "animalType": "동래역 1번 출구 지렁이",
             "description": "당신은 유연합니다.",
             "animalDescription": "민경이는 유연한 동물입니다",
             "clusterDescription": "당신의 유형은 다른 유형보다 여행/야외활동을 좋아합니다.",
-            "interesting": ["몸치", "갈색", "동래어딘가"]
+            "interesting": ["몸치", "갈색", "동래어딘가"],
+            "animalImageUrl": "https://lunlunneko-ydplab.hf.space/static/animals/lmk.svg"
         }
     elif cluster == 5:
         resultvalue = {
             "animalName": "당신의 동물은 민이입니다.",
-            "animalType": "청학동 주홍 매",
             "description": "당신은 수면의 질이 뛰어납니다.",
             "animalDescription": "민이는 빨리 자는 동물입니다",
             "clusterDescription": "당신의 유형은 다른 유형보다 일상/휴식을 좋아합니다.",
-            "interesting": ["수면", "주홍색", "청학동"]
+            "interesting": ["수면", "주홍색", "청학동"],
+            "animalImageUrl": "https://lunlunneko-ydplab.hf.space/static/animals/mm.svg"
         }
     elif cluster == 6:
         resultvalue = {
             "animalName": "당신의 동물은 민서입니다.",
-            "animalType": "대신동 노란 도마뱀",
             "description": "당신은 귀찮음이 뛰어납니다.",
             "animalDescription": "민서는 귀찮음 높은 동물입니다",
             "clusterDescription": "당신의 유형은 다른 유형보다 기타를 좋아합니다.",
-            "interesting": ["귀찮다 이제", "노랑색", "대신동"]
+            "interesting": ["귀찮다 이제", "노랑색", "대신동"],
+            "animalImageUrl": "https://lunlunneko-ydplab.hf.space/static/animals/sms.svg"
         }
     else:
         resultvalue = {
             "animalName": "당신의 동물은 준용이입니다.",
-            "animalType": "중리 회색 전봇대",
             "description": "당신은 길이가 뛰어납니다.",
             "animalDescription": "준영이는 키가 큰 동물입니다",
             "clusterDescription": "당신의 유형은 다른 유형보다 아 이제 귀찮다을 좋아합니다.",
-            "interesting": ["이 사람 키가 크다", "회색", "중리"]
+            "interesting": ["이 사람 키가 크다", "회색", "중리"],
+            "animalImageUrl": "https://lunlunneko-ydplab.hf.space/static/animals/sjy.svg"
         }
     return resultvalue
 
